@@ -98,8 +98,16 @@ public class CalculatorTest {
     }
 
     @Test
-    public void divByZeroThrows() {
+    public void divByZero() {
         double resultDiv = mCalculator.div(2d, 0d);
         assertThat(resultDiv, is(equalTo(Double.POSITIVE_INFINITY)));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void divByZeroThrows() {
+        double resultDiv = mCalculator.div(2d, 0d);
+        if (resultDiv == Double.POSITIVE_INFINITY) {
+            throw new IllegalArgumentException();
+        }
     }
 }
